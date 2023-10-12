@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "995008735149",
+    "firebase_url": "https://prattle-cb05a-default-rtdb.firebaseio.com",
+    "project_id": "prattle-cb05a",
+    "storage_bucket": "prattle-cb05a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995008735149:android:f4ecb4f5f3c95634482324",
+        "android_client_info": {
+          "package_name": "com.krishna.pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSqynW_EAdHan8edHAc8Tm6-1TWAZofLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
