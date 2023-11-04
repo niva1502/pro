@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.krishna.pro.ChatActivity
 import com.krishna.pro.R
+import com.krishna.pro.databinding.RecieveMsgBinding
 import com.krishna.pro.databinding.SendMsgBinding
 import com.krishna.pro.model.Message
 
@@ -76,12 +77,15 @@ class MessagesAdapter(
             val viewHolder = holder
             if (message.message == "photo") {
                 viewHolder.binding.image.visibility = View.VISIBLE
-                viewHolder.binding.message.visibility = View.GONE
+                viewHolder.binding.recivedMsg.visibility = View.GONE
                 viewHolder.binding.mLinear.visibility = View.GONE
                 Glide.with(context)
                     .load(message.imageUrl)
                     .placeholder(R.drawable.placeholder)
                     .into(viewHolder.binding.image)
+            }
+            else{
+                viewHolder.binding.recivedMsg.text=message.message
             }
         }
     }
@@ -93,6 +97,6 @@ class MessagesAdapter(
     }
 
     inner class ReceiveMsgHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding: SendMsgBinding = SendMsgBinding.bind(itemView)
+        var binding: RecieveMsgBinding = RecieveMsgBinding.bind(itemView)
     }
 }

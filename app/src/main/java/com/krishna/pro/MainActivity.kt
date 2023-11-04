@@ -59,11 +59,11 @@ class MainActivity : AppCompatActivity() {
 
                 for (snapshot1 in snapshot.children) {
                     val user: User = snapshot1.getValue(User::class.java) ?: continue
-
                     if (currentUserId != user.uid) {
                         users.add(user)
                     }
                 }
+
 
                 useradapter?.notifyDataSetChanged()
             }
@@ -86,6 +86,13 @@ class MainActivity : AppCompatActivity() {
             R.id.menu_item1 -> {
                 // Handle Option 1 click by starting the EditProfileActivity
                 logoutUser()
+                return true
+            }
+            R.id.menu_item2 -> {
+                // Handle Option 1 click by starting the EditProfileActivity
+                val intent=Intent(this,AboutUs::class.java)
+                startActivity(intent)
+                finish()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -119,22 +126,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-//        val builder = AlertDialog.Builder(this)
-//        builder.setTitle("Exit App")
-//            .setMessage("Are you sure you want to exit?")
-//
-//        builder.setPositiveButton("Yes") { dialog, _ ->
-//            dialog.dismiss()
-//            finishAffinity()
-//        }
-//
-//        builder.setNegativeButton("No") { dialog, _ ->
-//            dialog.dismiss()
-//        }
-//        val dialog: AlertDialog = builder.create()
-//        dialog.show()
-//
-//         // Call super.onBackPressed() here
+
         super.onBackPressed()
         finishAffinity()
 

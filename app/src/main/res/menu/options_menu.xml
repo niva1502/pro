@@ -2,7 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- res/menu/options_menu.xml -->
         <item
-            android:id="@+id/menu_item1"
-            android:title="LogOut" />
+            android:id="@+id/menu_item2"
+            android:title="About Us" />
+    <item
+        android:id="@+id/menu_item1"
+        android:title="LogOut" />
 
 </menu>

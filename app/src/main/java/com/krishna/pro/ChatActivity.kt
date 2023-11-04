@@ -69,6 +69,7 @@ class ChatActivity : AppCompatActivity() {
 
         senderUid = FirebaseAuth.getInstance().uid
 
+
         senderRoom = senderUid + receiverUid
         receiverRoom = receiverUid + senderUid
 
@@ -109,7 +110,8 @@ class ChatActivity : AppCompatActivity() {
                         for (snapshot1 in snapshot.children) {
                             val message: Message? = snapshot1.getValue(Message::class.java)
                             message?.messageId = snapshot1.key
-                            message?.let { messages?.add(it) }
+                            message?.let { messages?.add(it)
+                            }
                         }
                         adapter?.notifyDataSetChanged()
                     }
@@ -134,6 +136,7 @@ class ChatActivity : AppCompatActivity() {
 
 
 
+
                     database?.reference?.child("chats")?.child(senderRoom!!)
                         ?.updateChildren(lastMsgObj)
                     database?.reference?.child("chats")?.child(receiverRoom!!)
@@ -145,9 +148,10 @@ class ChatActivity : AppCompatActivity() {
                                 database?.reference?.child("chats")?.child(receiverRoom!!)
                                     ?.child("messages")?.child(randomKey)
                                     ?.setValue(message)?.addOnSuccessListener {
-
+                                            adapter=MessagesAdapter(this@ChatActivity,messages,senderRoom.toString(),receiverRoom.toString())
                                     }
                             }
+                        adapter!!.notifyDataSetChanged()
                     }
                     // You don't need any navigation code here to return to MainActivity
                 }
@@ -191,9 +195,10 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 25) {
+        if (requestCode == 25 && resultCode == RESULT_OK) {
             if (data != null) {
                 val selectedImage = data.data
                 val calendar = Calendar.getInstance()
@@ -227,9 +232,13 @@ class ChatActivity : AppCompatActivity() {
                                         ?.setValue(message)?.addOnSuccessListener {
                                             database?.reference?.child("chats")
                                                 ?.child(receiverRoom!!)
-                                                ?.child("messages")?.child(it.toString())
-                                                ?.setValue(message)?.addOnSuccessListener { }
+                                                ?.child("messages")?.child(randomKey)//changed
+                                                ?.setValue(message)?.addOnSuccessListener {
+                                                    adapter=MessagesAdapter(this@ChatActivity,messages,senderRoom.toString(),receiverRoom.toString())
+                                                }
+                                            adapter!!.notifyDataSetChanged()
                                         }
+                                    adapter!!.notifyDataSetChanged()
                                 }
                                 dialog?.dismiss()
                             }

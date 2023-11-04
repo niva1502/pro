@@ -15,7 +15,9 @@
         android:background="@drawable/recieve_drawable"
         android:padding="15dp"
         android:layout_margin="20dp">
+
         <TextView
+            android:id="@+id/recivedMsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
